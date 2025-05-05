@@ -197,7 +197,8 @@ function MatchedProfiles() {
       if (user && user.uid) {
         setUserId(user.uid);
         setPhotoUrl(
-          `http://myruhousing-1.onrender.com/api/profile-photo/${user.uid}?t=${Date.now()}`
+          `http://https://myruhousing.onrender.com
+/api/profile-photo/${user.uid}?t=${Date.now()}`
         );
       } else {
         setUserId(null);
@@ -220,7 +221,8 @@ function MatchedProfiles() {
         }
         const userPreferences = JSON.parse(storedPreferences);
 
-        const response = await fetch('http://myruhousing-1.onrender.com/api/matched-profiles', {
+        const response = await fetch('http://https://myruhousing.onrender.com
+/api/matched-profiles', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ ...userPreferences, userId }),
@@ -268,7 +270,8 @@ function MatchedProfiles() {
   const handleReportSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://myruhousing-1.onrender.com/api/report-issue', {
+      const response = await fetch('http://https://myruhousing.onrender.com
+/api/report-issue', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(reportData),
@@ -289,7 +292,8 @@ function MatchedProfiles() {
   const handleSayHello = async (recipientId) => {
     const senderId = localStorage.getItem("userId");
     try {
-      const response = await fetch("http://myruhousing-1.onrender.com/api/send-message", {
+      const response = await fetch("http://https://myruhousing.onrender.com
+/api/send-message", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ senderId, recipientId, content: "Hello!" }),
@@ -398,7 +402,8 @@ function MatchedProfiles() {
                 </div>
                 <div style={profileImageContainerStyle}>
                   <img
-                    src={`http://myruhousing-1.onrender.com/api/profile-photo/${profile.userId}`}
+                    src={`http://https://myruhousing.onrender.com
+/api/profile-photo/${profile.userId}`}
                     alt="profile"
                     style={profileImageStyle}
                     onError={(e) => (e.target.src = avatar)}

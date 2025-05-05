@@ -32,7 +32,8 @@ function ProfilePage() {
         localStorage.setItem('userId', user.uid);
 
         // fetch profile info
-        const res = await fetch(`http://myruhousing-1.onrender.com/api/profile?uid=${user.uid}`);
+        const res = await fetch(`http://https://myruhousing.onrender.com
+/api/profile?uid=${user.uid}`);
         if (res.ok) {
           const data = await res.json();
           setFirstName(data.firstName || "");
@@ -44,7 +45,8 @@ function ProfilePage() {
         }
 
         // fetch photo (AFTER user ID is known, so the photo API works)
-        setPhotoUrl(savedPhoto || `http://myruhousing-1.onrender.com/api/profile-photo/${user.uid}?${Date.now()}`);
+        setPhotoUrl(savedPhoto || `http://https://myruhousing.onrender.com
+/api/profile-photo/${user.uid}?${Date.now()}`);
       } else {
         setFirebaseUser(null);
         setUserId(null);
@@ -72,12 +74,14 @@ function ProfilePage() {
     formData.append("photo", photoFile);
     formData.append("uid", userId);
 
-    const res = await fetch("http://myruhousing-1.onrender.com/api/profile-photo", {
+    const res = await fetch("http://https://myruhousing.onrender.com
+/api/profile-photo", {
       method: "POST",
       body: formData,
     });
     if (res.ok) {
-      const newUrl = `http://myruhousing-1.onrender.com/api/profile-photo/${userId}?${Date.now()}`;
+      const newUrl = `http://https://myruhousing.onrender.com
+/api/profile-photo/${userId}?${Date.now()}`;
       setPhotoUrl(newUrl);
       localStorage.setItem('photoUrl', newUrl); // ✅ SAVE for other components
       setPhotoFile(null);
@@ -91,7 +95,8 @@ function ProfilePage() {
   const handleSave = async () => {
     if (!firebaseUser) return;
 
-    const res = await fetch("http://myruhousing-1.onrender.com/api/profile", {
+    const res = await fetch("http://https://myruhousing.onrender.com
+/api/profile", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -108,7 +113,8 @@ function ProfilePage() {
       alert(result.message || "Profile Saved!");
 
       // Fetch latest profile data after save
-      const updatedProfile = await fetch(`http://myruhousing-1.onrender.com/api/profile?uid=${firebaseUser.uid}`);
+      const updatedProfile = await fetch(`http://https://myruhousing.onrender.com
+/api/profile?uid=${firebaseUser.uid}`);
       if (updatedProfile.ok) {
         const updatedData = await updatedProfile.json();
         setFirstName(updatedData.firstName || "");

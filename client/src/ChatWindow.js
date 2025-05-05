@@ -6,7 +6,8 @@ import { motion } from "framer-motion";
 
 
 
-const socket = io("http://myruhousing-1.onrender.com");
+const socket = io("http://https://myruhousing.onrender.com
+");
 
 function ChatWindow({ currentUserId, chattingWith, goBack }) {
   const [messages, setMessages] = useState([]);
@@ -26,7 +27,8 @@ function ChatWindow({ currentUserId, chattingWith, goBack }) {
 
   const fetchMessages = async (scroll = false) => {
     try {
-      const res = await fetch(`http://myruhousing-1.onrender.com/api/chat?user1=${currentUserId}&user2=${chattingWith.uid}`);
+      const res = await fetch(`http://https://myruhousing.onrender.com
+/api/chat?user1=${currentUserId}&user2=${chattingWith.uid}`);
       if (res.ok) {
         const chatHistory = await res.json();
         setMessages(chatHistory);
@@ -56,7 +58,8 @@ function ChatWindow({ currentUserId, chattingWith, goBack }) {
     if (messageToSend === "") return;
   
     try {
-      const res = await fetch('http://myruhousing-1.onrender.com/api/chat', {
+      const res = await fetch('http://https://myruhousing.onrender.com
+/api/chat', {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -183,7 +186,8 @@ function ChatWindow({ currentUserId, chattingWith, goBack }) {
   gap: "12px"
 }}>
   <img
-    src={`http://myruhousing-1.onrender.com/api/profile-photo/${chattingWith.uid}`}
+    src={`http://https://myruhousing.onrender.com
+/api/profile-photo/${chattingWith.uid}`}
     alt="avatar"
     onError={(e) => (e.target.src = require('./images/default_avatar.png'))}
     style={{
@@ -230,7 +234,8 @@ function ChatWindow({ currentUserId, chattingWith, goBack }) {
     >
       {!isMine && (
         <img
-          src={`http://myruhousing-1.onrender.com/api/profile-photo/${chattingWith.uid}`}
+          src={`http://https://myruhousing.onrender.com
+/api/profile-photo/${chattingWith.uid}`}
           alt="avatar"
           onError={(e) => (e.target.src = require('./images/default_avatar.png'))}
           style={{
@@ -347,7 +352,8 @@ function ChatWindow({ currentUserId, chattingWith, goBack }) {
     formData.append("image", file);
 
     try {
-      const res = await fetch("http://myruhousing-1.onrender.com/api/upload-image", {
+      const res = await fetch("http://https://myruhousing.onrender.com
+/api/upload-image", {
         method: "POST",
         body: formData,
       });

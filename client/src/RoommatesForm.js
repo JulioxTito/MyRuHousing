@@ -165,7 +165,8 @@ function RoommatesForm({ firstName: initialFirstName, lastName: initialLastName,
     console.log("Data being sent:", preferencesData);
 
     try {
-      const response = await fetch('http://myruhousing-1.onrender.com/api/submit-preferences', {
+      const response = await fetch('http://https://myruhousing.onrender.com
+/api/submit-preferences', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
