@@ -81,7 +81,11 @@
   }
   
   .upload-controls button:hover {
-    background-color: var(--rutgers-red-dark);
+    background-color: #A52A2A !important;
+  }
+
+  .others-controls button:hover {
+    background-color: #A52A2A !important;
   }
   
   /* Action Buttons */

@@ -138,9 +138,20 @@ function ProfilePage() {
   // FPR THE USERS, JULIO BACK HERE
   if (showFindUsers) {
     return (
-      <div style={{ padding: "2rem" }}>
-        <button onClick={() => setShowFindUsers(false)} style={{ marginBottom: "1rem", padding: "8px" }}>
-          Back to Profile
+      <div >
+        <button className="find-Users-button" onClick={() => setShowFindUsers(false)} style={{
+          margin: "20px",
+          position: 'absolute',
+          background: 'transparent',
+          border: '2px solid white',
+          color: 'white',
+          padding: '8px 16px',
+          borderRadius: '10px',
+          fontWeight: 'bold',
+          cursor: 'pointer',
+          zIndex: 1000
+        }}>
+        Back to Profile
         </button>
         <FindUsers currentUserId={userId} startChat={setChattingWith} />
       </div>
@@ -161,25 +172,6 @@ function ProfilePage() {
           padding: "5px 15px",
         }}
       >
-        <div></div> {/* Left side blank to balance the center */}
-
-        <h2 style={{
-          color: "#F5F5F5",
-          fontWeight: "bold",
-          fontSize: "24px",
-          margin: 0,
-          flexGrow: 1
-        }}>
-          Welcome,  <strong>{firstName || firebaseUser.email}</strong>!
-        </h2>
-
-        <div>
-          <Link to="/login">
-            <button style={{ padding: "6px 14px", backgroundColor: "#A52A2A", color: "white", borderRadius: "4px", cursor: "pointer", fontWeight: "bold", border: "none" }}>
-              Logout
-            </button>
-          </Link>
-        </div>
       </div>
 
       <div style={{
@@ -196,8 +188,18 @@ function ProfilePage() {
       }}>
         <div className="profile-page" 
         style={{ backgroundColor: "rgba(0, 0, 0, 0.7)",
-            boxShadow: '0 0 15px rgba(255, 0, 0, 0.8)',}}>
+            boxShadow: '0 0 15px rgba(255, 0, 0, 0.8)', margin: "5px"}}>
           <div>
+          <h2 style={{
+          color: "#F5F5F5",
+          fontWeight: "bold",
+          fontSize: "30px",
+          marginBottom: "20px",
+          flexGrow: 1,
+          textAlign: "center",
+        }}>
+          Welcome,  <strong>{firstName || firebaseUser.email}</strong>!
+        </h2>
             {/* Profile Photo */}
             <section className="photo-section">
               <img
@@ -206,19 +208,28 @@ function ProfilePage() {
                 className="profile-avatar"
                 onError={(e) => (e.target.src = avatar)}
               />
+
               <div className="upload-controls">
                 <input
                   type="file"
                   accept="image/*"
                   onChange={(e) => setPhotoFile(e.target.files[0])}
                 />
-                <button onClick={handlePhotoUpload} disabled={!photoFile}>
+                <button onClick={handlePhotoUpload} disabled={!photoFile} style={{ width: "160px", margin: "20px",
+                  background: 'transparent',
+                  border: '2px solid white',
+                  color: 'white',
+                  padding: '8px 16px',
+                  borderRadius: '10px',
+                  fontWeight: 'bold',
+                  cursor: 'pointer',}}>
                   Upload
                 </button>
               </div>
             </section>
+
             <section className="profile-form">
-              <div className="form-group">
+              <div className="form-group" style={{ display: "flex", flexDirection: "column" }}>
                 <input
                   type="text"
                   name="firstName"
@@ -242,29 +253,50 @@ function ProfilePage() {
                 />
               </div>
 
-              <div style={{ display: "flex", justifyContent: "center", gap: "16px", marginTop: "10px" }}>
-                <button className="save-profile-button" onClick={handleSave}>
+              <div className="others-controls" style={{ display: "flex", justifyContent: "center", gap: "16px", marginTop: "10px" }}>
+                <button className="save-profile-button" onClick={handleSave} style={{ margin: "5px",
+                  background: 'transparent',
+                  border: '2px solid white',
+                  color: 'white',
+                  padding: '8px 16px',
+                  borderRadius: '10px',
+                  fontWeight: 'bold',
+                  cursor: 'pointer',}}>
                   Save Profile
                 </button>
               </div>
             </section>
 
-            <hr style={{ border: "none", height: "4px", backgroundColor: "var(--rutgers-red)", margin: "30px 0", borderRadius: "2px" }} />
+            <hr style={{ border: "none", height: "4px", backgroundColor: "white", margin: "30px 0", borderRadius: "2px" }} />
 
-            <div style={{ display: "flex", justifyContent: "center", gap: "16px", marginTop: "5px" }}>
-              <button className="find-roommates-button" onClick={() => setShowFindUsers(true)}>
+            <div className="others-controls" style={{ display: "flex", justifyContent: "center", gap: "16px", marginTop: "5px" }}>
+              <button className="find-roommates-button" onClick={() => setShowFindUsers(true)} style={{ margin: "20px",
+                  background: 'transparent',
+                  border: '2px solid white',
+                  color: 'white',
+                  padding: '8px 16px',
+                  borderRadius: '10px',
+                  fontWeight: 'bold',
+                  cursor: 'pointer',}}>
                 Find Roommates
               </button>
 
               <Link to="/chat">
                 <button
-                  className="find-roommates-button" style={{ width: "160px" }}>
+                  className="find-roommates-button" style={{ width: "160px", margin: "20px",
+                  background: 'transparent',
+                  border: '2px solid white',
+                  color: 'white',
+                  padding: '8px 16px',
+                  borderRadius: '10px',
+                  fontWeight: 'bold',
+                  cursor: 'pointer',}}>
                   Go to Chats
                 </button>
               </Link>
             </div>
 
-            <hr style={{ border: "none", height: "4px", backgroundColor: "var(--rutgers-red)", margin: "30px 0", borderRadius: "2px" }} />
+            <hr style={{ border: "none", height: "4px", backgroundColor: "white", margin: "30px 0", borderRadius: "2px" }} />
 
 
           </div>

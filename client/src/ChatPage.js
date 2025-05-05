@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 
 const socket = io("http://myruhousing-1.onrender.com");
 
-function ChatPage({photoUrl = avatar}) {
+function ChatPage() {
   const [currentUserId, setCurrentUserId] = useState(null);
   const [allUsers, setAllUsers] = useState([]);
   const [chattingWith, setChattingWith] = useState(null);
@@ -19,6 +19,23 @@ function ChatPage({photoUrl = avatar}) {
   const [isResizing, setIsResizing] = useState(false);
   const [typingUsers, setTypingUsers] = useState({});
   const [unreadCounts, setUnreadCounts] = useState({});
+  const [userId, setUserId] = useState(null);
+  const [photoUrl, setPhotoUrl] = useState(avatar);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user && user.uid) {
+        setUserId(user.uid);
+        setPhotoUrl(
+          `http://localhost:5002/api/profile-photo/${user.uid}?t=${Date.now()}`
+        );
+      } else {
+        setUserId(null);
+        setPhotoUrl(avatar);
+      }
+    });
+    return () => unsubscribe();
+  }, []);
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -29,7 +46,7 @@ function ChatPage({photoUrl = avatar}) {
         }
       }
     };
-    
+  
   
     const handleMouseUp = () => {
       setIsResizing(false);
@@ -126,25 +143,6 @@ function ChatPage({photoUrl = avatar}) {
         padding: "5px 15px",
       }}
     >
-      <div></div> {/* Left side blank to balance the center */}
-
-      <h2 style={{
-        color: "#F5F5F5",
-        fontWeight: "bold",
-        fontSize: "24px",
-        margin: 0,
-        flexGrow: 1
-      }}>
-        Message Potential Roommates
-      </h2>
-
-      <div>
-        <Link to="/login">
-        <button style={{ padding: "6px 14px", backgroundColor: "#A52A2A", color: "white", borderRadius: "4px", cursor: "pointer", fontWeight: "bold", border: "none" }}>
-            Logout
-          </button>
-        </Link>
-      </div>
     </div>
     <div style={{ display: 'flex', height: '100vh' }}>
       <div

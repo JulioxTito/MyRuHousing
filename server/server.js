@@ -318,9 +318,9 @@ app.get("/api/profile", async (req, res) => {
     res.status(500).json({ error: "Server error" });
   }
 });
-//!ends here
 
-// ------------ Submit user preferences form ----------- //Part 1
+
+// ------------ Submit user preferences form ----------- //
 app.post("/api/submit-preferences", async (req, res) => {
   const {
     first_name,
@@ -455,7 +455,7 @@ app.post("/api/matched-profiles", async (req, res) => {
         case "not important":
           return 1;
         default:
-          return 1; // Default weight
+          return 1; 
       }
     };
 
@@ -594,9 +594,7 @@ app.post("/api/matched-profiles", async (req, res) => {
         matchScore += getWeight(userPreferences.gender_importance);
       }
 
-      let matchLevel = "Fair Match"; // Default
-
-      //Score thresholds here (adjust as needed)
+      let matchLevel = "Fair Match"; 
       const bestMatchThreshold = maxPossibleScore * 0.8; // 80% or higher
       const goodMatchThreshold = maxPossibleScore * 0.5; // 50% or higher
 
@@ -615,7 +613,7 @@ app.post("/api/matched-profiles", async (req, res) => {
         matchLevel,
         matchScore,
         photoId,
-      }); // Include score for potential debugging or more info
+      }); 
     }
 
     // Sort profiles by match score (descending from best to good percentages)
@@ -639,7 +637,7 @@ app.post("/api/report-issue", async (req, res) => {
   }
 
   try {
-    const complaintsCollection = db.collection("complaints"); // Changed to 'complaints'
+    const complaintsCollection = db.collection("complaints"); 
     const result = await complaintsCollection.insertOne({
       name: name.trim(),
       ruid: ruid.trim(),
@@ -659,7 +657,7 @@ app.post("/api/report-issue", async (req, res) => {
   }
 });
 
-//!chat beings here
+
 // ------------ Save a chat message ----------- //
 app.post("/api/chat", async (req, res) => {
   if (!db) {
@@ -887,7 +885,7 @@ app.post("/api/send-message", async (req, res) => {
   }
 
   try {
-    const chatsCollection = db.collection("chats"); // ✅ important
+    const chatsCollection = db.collection("chats"); // 
     const newMessage = {
       senderId,
       receiverId: recipientId,
@@ -895,7 +893,7 @@ app.post("/api/send-message", async (req, res) => {
       timestamp: new Date(),
     };
 
-    await chatsCollection.insertOne(newMessage); // ✅ stored in chats, like your other messages
+    await chatsCollection.insertOne(newMessage); // 
     res.status(200).json({ message: "Message sent successfully" });
   } catch (err) {
     console.error("Error saving message:", err);

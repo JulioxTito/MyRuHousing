@@ -36,19 +36,23 @@ function HeaderBar({ photoUrl = avatar }) {
           <Link to="/profile"><button className="nav-button">Profile</button></Link>
         </div>
       </div>
-      <Link to="/profile">
-        <img
-          src={photoUrl}
-          alt="User Avatar"
-          style={{
-            height: "60px",
-            width: "60px",
-            borderRadius: "50%",
-            objectFit: "cover",
-            background: "#fafafa",
-          }}
-        />
-      </Link>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+        <Link to="/chat"><button className="nav-button">Chats</button></Link>
+        <Link to="/login"><button className="nav-button">Logout</button></Link>
+        <Link to="/profile">
+          <img
+            src={photoUrl}
+            alt="User Avatar"
+            style={{
+              height: "60px",
+              width: "60px",
+              borderRadius: "50%",
+              objectFit: "cover",
+              background: "#fafafa",
+            }}
+          />
+        </Link>
+      </div>
     </div>
   );
 }

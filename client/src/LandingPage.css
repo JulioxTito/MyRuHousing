@@ -304,9 +304,9 @@
   }
   
   .profile-image-preview img {
-    width: 160px;
-    height: 160px;
-    border-radius: 50%;
+    width: 260px;
+    height: 260px;
+    
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
   }
   

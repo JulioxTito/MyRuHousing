@@ -271,23 +271,6 @@ function HomePage() {
                 My Roommates
               </button>
             </Link>
-            <Link to="/chat">
-              <button
-                className="chat-button"
-                style={{
-                  backgroundColor: "#A52A2A",
-                  color: "white",
-                  padding: "8px 16px",
-                  borderRadius: "5px",
-                  cursor: "pointer",
-                  border: "none",
-                  fontWeight: "bold",
-                }}
-              >
-                Chats
-              </button>
-            </Link>
-
             <Link to="/profile">
               <button
                 className="profile-button"
@@ -305,24 +288,37 @@ function HomePage() {
               </button>
             </Link>
           </div>
+        </div >
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <Link to="/chat">
+            <button className="roommates-button" style={{ padding: "6px 14px", backgroundColor: "#A52A2A", color: "white", borderRadius: "4px", cursor: "pointer", fontWeight: "bold", border: "none" }}>
+              Chats
+            </button>
+          </Link>
+          <Link to="/login">
+            <button className="profile-button" style={{ padding: "6px 14px", backgroundColor: "#A52A2A", color: "white", borderRadius: "4px", cursor: "pointer", fontWeight: "bold", border: "none" }}>
+              Logout
+            </button>
+          </Link>
+
+          <Link to="/profile">
+            <img
+              src={photoUrl /* or avatar */}
+              alt="User Avatar"
+              style={{
+                height: "60px",
+                width: "60px",
+                borderRadius: "50%",
+                objectFit: "cover",
+                background: "#fafafa",
+              }}
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = avatar;
+              }}
+            />
+          </Link>
         </div>
-        <Link to="/profile">
-          <img
-            src={photoUrl /* or avatar */}
-            alt="User Avatar"
-            style={{
-              height: "60px",
-              width: "60px",
-              borderRadius: "50%",
-              objectFit: "cover",
-              background: "#fafafa",
-            }}
-            onError={(e) => {
-              e.target.onerror = null;
-              e.target.src = avatar;
-            }}
-          />
-        </Link>
       </div>
 
       {/* Navbar */}
@@ -333,80 +329,56 @@ function HomePage() {
           padding: "5px 15px",
           alignItems: "center",
           justifyContent: "center",
-          justifyContent: "space-between",
         }}
       >
-        <div
-          style={{
-            fontWeight: "bold",
-            fontSize: "24px",
-            color: "#F5F5F5",
-          }}
-        >
-          Welcome home, Scarlet Knight! Your search for off-campus living starts
-          here :)
-        </div>
-
-        {/* SEARCH BAR RESTORED EXACTLY AS ORIGINAL - Search bar taken out from nav bar */}
-        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-          <Link to="/login">
-            <button
-              style={{
-                padding: "6px 14px",
-                backgroundColor: "#A52A2A",
-                color: "white",
-                borderRadius: "4px",
-                cursor: "pointer",
-                fontWeight: "bold",
-                border: "none",
-              }}
-            >
-              Logout
-            </button>
-          </Link>
-        </div>
       </div>
+      <div>
 
-      {/* Background and Grid */}
-      {/* Background and Grid */}
-      <div
-        style={{
-          backgroundImage: `url(${building})`,
-          backgroundSize: "100% auto",
-          backgroundPosition: "top center",
-          backgroundRepeat: "no-repeat",
-          backgroundAttachment: "fixed",
-          minHeight: "100vh",
-          padding: "40px",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "flex-start",
-        }}
-      >
-        {/* Main Content Window */}
+        {/* Background and Grid */}
+        {/* Background and Grid */}
         <div
           style={{
-            backgroundColor: "rgba(0, 0, 0, 0.7)",
-            boxShadow: '0 0 15px rgba(255, 0, 0, 0.8)',
-            borderRadius: "12px",
-            padding: "30px",
-            width: "90%",
-            maxWidth: "1200px",
+            backgroundImage: `url(${building})`,
+            backgroundSize: "100% auto",
+            backgroundPosition: "top center",
+            backgroundRepeat: "no-repeat",
+            backgroundAttachment: "fixed",
+            minHeight: "100vh",
+            padding: "40px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "flex-start",
           }}
         >
-          {/* Search bar and Filter Button (Restored EXACTLY) */}
+          {/* Main Content Window */}
           <div
             style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              backgroundColor: "#F5F5F5",
-              padding: "12px 20px",
-              borderRadius: "8px",
-              marginBottom: "20px",
+              marginTop: "5px",
+              backgroundColor: "rgba(0, 0, 0, 0.7)",
+              boxShadow: '0 0 15px rgba(255, 0, 0, 0.8)',
+              borderRadius: "12px",
+              padding: "30px",
+              width: "90%",
+              maxWidth: "1200px",
             }}
           >
-            {/* <input
+
+            {/* Search bar and Filter Button (Restored EXACTLY) */}
+            <h1 style={{color:"white",fontSize:"30px", textAlign:"center", marginBottom:"10px"}}>
+              Welcome Home, Scarlet Knight! Your search for off-campus living starts here :)
+            </h1>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                backgroundColor: "#F5F5F5",
+                padding: "12px 20px",
+                borderRadius: "8px",
+                marginBottom: "20px",
+              }}
+            >
+              {/* <input
               type="text"
               placeholder="Search for houses..."
               style={{
@@ -416,191 +388,192 @@ function HomePage() {
                 border: "1px solid #ccc",
               }}
             /> */}
-            <form onSubmit={handleSubmit}>
-              <input
-                type="text"
-                value={searchProperties}
-                onChange={(e) => setSearchProperties(e.target.value)}
-                placeholder="Enter City or Area"
-              />
-              <button type="submit" style={{ padding: "1px" }}>
-                Search
-              </button>
-            </form>
-            <div style={{ position: "relative" }}>
-              <button
-                onClick={() => setShowFilterDropdown((prev) => !prev)}
-                style={{
-                  padding: "8px 16px",
-                  backgroundColor: "#3498db",
-                  color: "white",
-                  border: "none",
-                  borderRadius: "6px",
-                  fontWeight: "bold",
-                  cursor: "pointer",
-                }}
-              >
-                Filter ⌄
-              </button>
-
-              <FilterDropdown
-                show={showFilterDropdown}
-                onClose={() => setShowFilterDropdown(false)}
-                onFilterChange={(filterUpdate) => {
-                  if (filterUpdate.homeType !== undefined)
-                    setHomeTypeFilter(filterUpdate.homeType);
-                  if (filterUpdate.statusType !== undefined)
-                    setStatusTypeFilter(filterUpdate.statusType);
-                  if (filterUpdate.sortOrder !== undefined)
-                    setSortOrder(filterUpdate.sortOrder);
-                  setPage(1);
-                }}
-              />
-            </div>
-          </div>
-
-          {/* House Cards Grid (Restored EXACTLY with Save button) */}
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-              gap: "20px",
-            }}
-          >
-            {displayedProperties.map((home, i) => {
-              const available = isHouseAvailable(home);
-              const rating = getHouseRating(home);
-
-              return (
-                <div
-                  key={home.zpid}
-                  onClick={() => openModal(home)}
-                  style={{
-                    backgroundColor: "#f9f9f9",
-                    borderRadius: "10px",
-                    boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
-                    overflow: "hidden",
-                    textAlign: "center",
-                    cursor: "pointer",
-                    transition: "transform 0.2s ease",
-                  }}
-                >
-                  <img
-                    src={home.imgSrc}
-                    alt={`House ${i + 1}`}
-                    style={{
-                      width: "100%",
-                      height: "160px",
-                      objectFit: "cover",
-                    }}
-                  />
-                  <div style={{ padding: "10px" }}>
-                    {/* Clearly improved price styling */}
-                    <p
-                      style={{
-                        margin: "8px 0",
-                        fontWeight: "700",
-                        fontSize: "18px",
-                        color: "#2c3e50",
-                      }}
-                    >
-                      {home.price
-                        ? String(home.price).startsWith("$")
-                          ? home.price
-                          : `$${home.price}`
-                        : "Price Not Listed"}
-                    </p>
-
-                    {/* Availability Status */}
-                    <p
-                      style={{
-                        color: available ? "green" : "red",
-                        fontWeight: "bold",
-                      }}
-                    >
-                      {available
-                        ? "Currently Available"
-                        : "No Longer Available"}
-                    </p>
-
-                    {/* Star Rating clearly ABOVE Save button */}
-                    <div
-                      style={{
-                        marginTop: "8px",
-                        fontSize: "14px",
-                        fontWeight: "bold",
-                        color: "#ffffff", // White text
-                        backgroundColor: "#909090", // Light grayish background
-                        borderRadius: "4px",
-                        padding: "3px 8px",
-                        display: "inline-block",
-                      }}
-                    >
-                      ⭐ {getHouseRating(home).toFixed(1)} / 5
-                    </div>
-
-                    {/* Save button clearly BELOW Rating */}
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleSaveHouse(home.zpid);
-                      }}
-                      style={{
-                        padding: "5px 12px",
-                        backgroundColor: "white",
-                        border: "1px solid #ccc",
-                        borderRadius: "20px",
-                        cursor: "pointer",
-                        color: "#e91e63",
-                        fontWeight: "bold",
-                        display: "block", // clearly forces button below rating, not inline
-                        margin: "0 auto",
-                      }}
-                    >
-                      ♥{" "}
-                      {localStorage.getItem("savedHouses") &&
-                      JSON.parse(localStorage.getItem("savedHouses")).includes(
-                        home.zpid
-                      )
-                        ? "Unsave"
-                        : "Save"}
-                    </button>
-                  </div>
-                </div>
-              );
-            })}
-
-            {/* Number of pages for filter HERE */}
-            <div style={{ marginTop: "20px" }}>
-              {Array.from({ length: totalPages }, (_, i) => i + 1).map((pg) => (
-                <button
-                  key={pg}
-                  onClick={() => setPage(pg)}
-                  style={{
-                    margin: "4px",
-                    padding: "6px 12px",
-                    backgroundColor: pg === page ? "#333" : "#eee",
-                    color: pg === page ? "#fff" : "#000",
-                    border: "none",
-                    borderRadius: "4px",
-                    cursor: "pointer",
-                  }}
-                >
-                  {pg}
+              <form onSubmit={handleSubmit}>
+                <input
+                  type="text"
+                  value={searchProperties}
+                  onChange={(e) => setSearchProperties(e.target.value)}
+                  placeholder="Enter City or Area"
+                />
+                <button type="submit" style={{ padding: "1px" }}>
+                  Search
                 </button>
-              ))}
+              </form>
+              <div style={{ position: "relative" }}>
+                <button
+                  onClick={() => setShowFilterDropdown((prev) => !prev)}
+                  style={{
+                    padding: "8px 16px",
+                    backgroundColor: "#3498db",
+                    color: "white",
+                    border: "none",
+                    borderRadius: "6px",
+                    fontWeight: "bold",
+                    cursor: "pointer",
+                  }}
+                >
+                  Filter ⌄
+                </button>
+
+                <FilterDropdown
+                  show={showFilterDropdown}
+                  onClose={() => setShowFilterDropdown(false)}
+                  onFilterChange={(filterUpdate) => {
+                    if (filterUpdate.homeType !== undefined)
+                      setHomeTypeFilter(filterUpdate.homeType);
+                    if (filterUpdate.statusType !== undefined)
+                      setStatusTypeFilter(filterUpdate.statusType);
+                    if (filterUpdate.sortOrder !== undefined)
+                      setSortOrder(filterUpdate.sortOrder);
+                    setPage(1);
+                  }}
+                />
+              </div>
             </div>
-            {/* Number of pages for filter HERE */}
+
+            {/* House Cards Grid (Restored EXACTLY with Save button) */}
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+                gap: "20px",
+              }}
+            >
+              {displayedProperties.map((home, i) => {
+                const available = isHouseAvailable(home);
+                const rating = getHouseRating(home);
+
+                return (
+                  <div
+                    key={home.zpid}
+                    onClick={() => openModal(home)}
+                    style={{
+                      backgroundColor: "#f9f9f9",
+                      borderRadius: "10px",
+                      boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
+                      overflow: "hidden",
+                      textAlign: "center",
+                      cursor: "pointer",
+                      transition: "transform 0.2s ease",
+                    }}
+                  >
+                    <img
+                      src={home.imgSrc}
+                      alt={`House ${i + 1}`}
+                      style={{
+                        width: "100%",
+                        height: "160px",
+                        objectFit: "cover",
+                      }}
+                    />
+                    <div style={{ padding: "10px" }}>
+                      {/* Clearly improved price styling */}
+                      <p
+                        style={{
+                          margin: "8px 0",
+                          fontWeight: "700",
+                          fontSize: "18px",
+                          color: "#2c3e50",
+                        }}
+                      >
+                        {home.price
+                          ? String(home.price).startsWith("$")
+                            ? home.price
+                            : `$${home.price}`
+                          : "Price Not Listed"}
+                      </p>
+
+                      {/* Availability Status */}
+                      <p
+                        style={{
+                          color: available ? "green" : "red",
+                          fontWeight: "bold",
+                        }}
+                      >
+                        {available
+                          ? "Currently Available"
+                          : "No Longer Available"}
+                      </p>
+
+                      {/* Star Rating clearly ABOVE Save button */}
+                      <div
+                        style={{
+                          marginTop: "8px",
+                          fontSize: "14px",
+                          fontWeight: "bold",
+                          color: "#ffffff", // White text
+                          backgroundColor: "#909090", // Light grayish background
+                          borderRadius: "4px",
+                          padding: "3px 8px",
+                          display: "inline-block",
+                        }}
+                      >
+                        ⭐ {getHouseRating(home).toFixed(1)} / 5
+                      </div>
+
+                      {/* Save button clearly BELOW Rating */}
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleSaveHouse(home.zpid);
+                        }}
+                        style={{
+                          padding: "5px 12px",
+                          backgroundColor: "white",
+                          border: "1px solid #ccc",
+                          borderRadius: "20px",
+                          cursor: "pointer",
+                          color: "#e91e63",
+                          fontWeight: "bold",
+                          display: "block", // clearly forces button below rating, not inline
+                          margin: "0 auto",
+                        }}
+                      >
+                        ♥{" "}
+                        {localStorage.getItem("savedHouses") &&
+                          JSON.parse(localStorage.getItem("savedHouses")).includes(
+                            home.zpid
+                          )
+                          ? "Unsave"
+                          : "Save"}
+                      </button>
+                    </div>
+                  </div>
+                );
+              })}
+
+              {/* Number of pages for filter HERE */}
+              <div style={{ marginTop: "20px" }}>
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map((pg) => (
+                  <button
+                    key={pg}
+                    onClick={() => setPage(pg)}
+                    style={{
+                      margin: "4px",
+                      padding: "6px 12px",
+                      backgroundColor: pg === page ? "#333" : "#eee",
+                      color: pg === page ? "#fff" : "#000",
+                      border: "none",
+                      borderRadius: "4px",
+                      cursor: "pointer",
+                    }}
+                  >
+                    {pg}
+                  </button>
+                ))}
+              </div>
+              {/* Number of pages for filter HERE */}
+            </div>
           </div>
         </div>
+        <HouseDetailModal
+          isOpen={modalOpen}
+          onRequestClose={closeModal}
+          house={selectedHouse}
+          available={selectedHouse ? isHouseAvailable(selectedHouse) : false}
+          rating={selectedHouse ? getHouseRating(selectedHouse) : 0}
+        />
       </div>
-      <HouseDetailModal
-        isOpen={modalOpen}
-        onRequestClose={closeModal}
-        house={selectedHouse}
-        available={selectedHouse ? isHouseAvailable(selectedHouse) : false}
-        rating={selectedHouse ? getHouseRating(selectedHouse) : 0}
-      />
     </>
   );
 }

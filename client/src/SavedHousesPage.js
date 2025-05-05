@@ -13,6 +13,7 @@ import building from "./images/clearBuilding.png";
 import SavedHousesDetailModel from "./SavedHousesDetailModel";
 import "./HomePage.css"; // re-use hover colours, buttons, etc.
 import "./SavedHousePage.css"; // **new**, only a few extra rules
+import HeaderBar from "./HeaderBar";
 
 function SavedHousesPage() {
   const navigate = useNavigate();
@@ -90,57 +91,7 @@ function SavedHousesPage() {
   /* ─────────────────────────  render  ───────────────────────── */
   return (
     <>
-      {/* ███  Scarlet header (identical to HomePage)  ███ */}
-      <header
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          backgroundImage: `url(${headerImg})`,
-          backgroundSize: "cover",
-          padding: "15px 20px",
-          color: "#ffffff",
-        }}
-      >
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <img
-            src={logo}
-            alt="RU Housing"
-            style={{ height: 80, marginRight: 20 }}
-          />
-          <div style={{ display: "flex", gap: 25 }}>
-            <button onClick={goHome} className="home-button     nav-btn">
-              Home
-            </button>
-            <button onClick={goSaved} className="saved-houses-button nav-btn">
-              Saved Houses
-            </button>
-            <Link to="/matched-profiles">
-              <button className="roommates-button nav-btn">My Roommates</button>
-            </Link>
-            <Link to="/profile">
-              <button className="profile-button nav-btn">Profile</button>
-            </Link>
-          </div>
-        </div>
-
-        <Link to="/profile">
-          <img
-            src={photoUrl}
-            alt="avatar"
-            style={{
-              height: 60,
-              width: 60,
-              borderRadius: "50%",
-              objectFit: "cover",
-              background: "#fafafa",
-            }}
-            onError={(e) => {
-              e.currentTarget.src = avatar;
-            }}
-          />
-        </Link>
-      </header>
+      <HeaderBar photoUrl={photoUrl} />
 
       {/* ███  greeting / logout bar  ███ */}
       <div
@@ -152,14 +103,6 @@ function SavedHousesPage() {
           padding: "5px 15px",
         }}
       >
-        <span style={{ color: "#F5F5F5", fontWeight: "bold", fontSize: 24 }}>
-          Saved Houses
-        </span>
-        <Link to="/login">
-          <button style={{ padding: "6px 14px", backgroundColor: "#A52A2A", color: "white", borderRadius: "4px", cursor: "pointer", fontWeight: "bold", border: "none" }}>
-            Logout
-          </button>
-        </Link>
       </div>
 
       {/* ███  blue skyline background  ███ */}

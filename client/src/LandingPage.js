@@ -33,11 +33,11 @@ function LandingPage() {
         <div className="profile-bubbles">
           <div className="chat-bubble left">📸 Add a profile picture</div>
           <div className="chat-bubble left">⚙️ Customize your preferences</div>
-          <div className="chat-bubble left">📄 View saved listings</div>
+          <div className="chat-bubble left">📄 Chat with other users</div>
           <div className="chat-bubble left">🔥 Match with other users</div>
         </div>
         <div className="profile-image-preview">
-          <img src={require("./images/default_avatar.png")} alt="Profile Preview" />
+          <img src={require("./images/profilepage.jpg")} alt="Profile Preview" />
         </div>
       </div>
     </div>,

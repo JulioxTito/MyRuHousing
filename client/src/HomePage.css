@@ -3,7 +3,8 @@
 }
 
 .home-button:hover, 
-.report-button-style:hover {
+.report-button-style:hover ,
+.find-Users-button:hover{
   background-color: #800000 !important;
 }
 
