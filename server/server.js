@@ -870,7 +870,8 @@ app.post("/api/upload-image", upload.single("image"), async (req, res) => {
 
     fs.writeFileSync(filePath, req.file.buffer);
 
-    const imageUrl = `http://localhost:5002/uploads/${fileName}`;
+    const imageUrl = `${req.protocol}://${req.get("host")}/uploads/${fileName}`;
+
     res.json({ imageUrl });
   } catch (err) {
     console.error("Upload error:", err);
