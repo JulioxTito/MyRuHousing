@@ -84,28 +84,36 @@ function HomePage() {
     navigate(`/house/${id}`);
   };
 
-  const handleSaveHouse = (houseId) => {
-    const storedSavedHouses = localStorage.getItem("savedHouses");
-    const currentSavedHouses = storedSavedHouses
-      ? JSON.parse(storedSavedHouses)
-      : [];
-
-    if (!currentSavedHouses.includes(houseId)) {
-      localStorage.setItem(
-        "savedHouses",
-        JSON.stringify([...currentSavedHouses, houseId])
-      );
-      setSavedHouses([...currentSavedHouses, houseId]); // Update local state for immediate UI feedback
-      alert(`House #${houseId} saved!`);
-    } else {
-      const updatedSavedHouses = currentSavedHouses.filter(
-        (id) => id !== houseId
-      );
-      localStorage.setItem("savedHouses", JSON.stringify(updatedSavedHouses));
-      setSavedHouses(updatedSavedHouses); // Update local state
-      alert(`House #${houseId} unsaved!`);
+  const handleSaveHouse = async (houseId, houseData) => {
+    try {
+      const storedSavedHouses = savedHouses;
+  
+      if (!storedSavedHouses.includes(houseId)) {
+        // Save to backend
+        await axios.post("https://myruhousing.onrender.com/api/house", {
+          userId,
+          houseId,
+          houseData,
+        });
+  
+        setSavedHouses([...storedSavedHouses, houseId]);
+        alert(`House #${houseId} saved!`);
+      } else {
+        // Unsave from backend
+        await axios.delete(`https://myruhousing.onrender.com/api/house/${houseId}`, {
+          data: { userId },
+        });
+  
+        const updatedSavedHouses = storedSavedHouses.filter((id) => id !== houseId);
+        setSavedHouses(updatedSavedHouses);
+        alert(`House #${houseId} unsaved!`);
+      }
+    } catch (err) {
+      console.error("Error saving house:", err);
+      alert("Something went wrong.");
     }
   };
+  
 
   const closeModal = () => {
     setModalOpen(false);
@@ -515,7 +523,7 @@ function HomePage() {
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
-                          handleSaveHouse(home.zpid);
+                          handleSaveHouse(home.zpid, home);
                         }}
                         style={{
                           padding: "5px 12px",
