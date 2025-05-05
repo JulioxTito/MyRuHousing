@@ -17,8 +17,7 @@ function FindUsers({ currentUserId }) {
   };
 
   const fetchUsers = async () => {
-    const res = await fetch('http://https://myruhousing.onrender.com
-/api/all-users');
+    const res = await fetch('https://myruhousing.onrender.com/api/all-users');
     if (res.ok) {
       const usersList = await res.json();
       setUsers(usersList);

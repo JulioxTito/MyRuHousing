@@ -15,8 +15,7 @@ function SavedHouses() {
   const fetchSavedHouses = async () => {
     const userId = localStorage.getItem("userId");
     const userSavedHouses = await axios.get(
-      `http://https://myruhousing.onrender.com
-/api/house/${userId}`
+      `https://myruhousing.onrender.com/api/house/${userId}`
     );
     setProperties(res.data.props || []);
   };

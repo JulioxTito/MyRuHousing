@@ -12,8 +12,7 @@
         const formData = new FormData();
         formData.append("image", file);
 
-        const res = await fetch("http://https://myruhousing.onrender.com
-/api/upload-image", {
+        const res = await fetch("https://myruhousing.onrender.com/api/upload-image", {
           method: "POST",
           body: formData,
         });

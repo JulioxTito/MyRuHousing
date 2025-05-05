@@ -36,8 +36,7 @@ function SavedHousesDetailModel({ isOpen, onRequestClose, house }) {
     // 2.) delete the house
     try {
       const response = await axios.delete(
-        `http://https://myruhousing.onrender.com
-/api/house/${house._id}`
+        `https://myruhousing.onrender.com/api/house/${house._id}`
       );
       alert(response.data.message);
     } catch (error) {
