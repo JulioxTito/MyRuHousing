@@ -7,36 +7,16 @@ import { useNavigate } from 'react-router-dom';
 function Login() {
   const navigate = useNavigate();
 
-  import axios from 'axios'; // make sure this is at the top of your file
-
-const handleGoogleLogin = () => {
-  signInWithPopup(auth, provider)
-    .then(async (result) => {
-      const user = result.user;
-      console.log("✅ Firebase login successful:", user);
-
-      // Send user data to backend
-      await axios.post("https://myruhousing.onrender.com/user", {
-        uid: user.uid,
-        email: user.email,
-        firstName: "", // empty for now
-        lastName: "",
-        netID: "",
-        photoURL: user.photoURL || ""
+  const handleGoogleLogin = () => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        console.log("✅ User signed in:", result.user);
+        navigate("/home");
+      })
+      .catch((error) => {
+        console.error("❌ Google login failed:", error);
       });
-
-      // (Optional) Get profile from MongoDB
-      const profileResponse = await axios.get(`https://myruhousing.onrender.com/api/profile?uid=${user.uid}`);
-      console.log("✅ Profile loaded:", profileResponse.data);
-
-      // Navigate to home
-      navigate("/home");
-    })
-    .catch((error) => {
-      console.error("❌ Google login failed:", error);
-    });
-};
-
+  };
 
   return (
     <div
