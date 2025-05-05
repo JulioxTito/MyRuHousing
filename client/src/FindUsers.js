@@ -6,7 +6,7 @@ function FindUsers({ currentUserId, startChat }) {
   const [searchQuery, setSearchQuery] = useState("");
 
   const fetchUsers = async () => {
-    const res = await fetch('http://localhost:5002/api/all-users');
+    const res = await fetch('http://myruhousing-1.onrender.com/api/all-users');
     if (res.ok) {
       const usersList = await res.json();
       setUsers(usersList);

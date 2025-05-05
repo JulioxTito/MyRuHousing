@@ -9,7 +9,7 @@ import HeaderBar from "./HeaderBar";
 import { Link } from "react-router-dom";
 
 
-const socket = io("http://localhost:5002");
+const socket = io("http://myruhousing-1.onrender.com");
 
 function ChatPage({photoUrl = avatar}) {
   const [currentUserId, setCurrentUserId] = useState(null);
@@ -58,7 +58,7 @@ function ChatPage({photoUrl = avatar}) {
   }, []);
 
   const fetchChats = () => {
-    fetch(`http://localhost:5002/api/chat/rooms?userId=${currentUserId}`)
+    fetch(`http://myruhousing-1.onrender.com/api/chat/rooms?userId=${currentUserId}`)
       .then((res) => res.json())
       .then((data) => {
         setAllUsers(data);
@@ -213,7 +213,7 @@ function ChatPage({photoUrl = avatar}) {
               >
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                   <img
-                    src={`http://localhost:5002/api/profile-photo/${user.uid}`}
+                    src={`http://myruhousing-1.onrender.com/api/profile-photo/${user.uid}`}
                     alt="profile"
                     onError={(e) => (e.target.src = avatar)}
                     style={{

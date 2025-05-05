@@ -31,7 +31,7 @@ function SavedHousesPage() {
     const fetch = async () => {
       try {
         const { data } = await axios.get(
-          `http://localhost:5002/api/house/${userId}`
+          `http://myruhousing-1.onrender.com/api/house/${userId}`
         );
         setProperties(data.props || []);
       } catch (err) {
@@ -47,7 +47,7 @@ function SavedHousesPage() {
       if (user && user.uid) {
         setUserId(user.uid);
         setPhotoUrl(
-          `http://localhost:5002/api/profile-photo/${user.uid}?t=${Date.now()}`
+          `http://myruhousing-1.onrender.com/api/profile-photo/${user.uid}?t=${Date.now()}`
         );
       } else {
         setUserId(null);
@@ -78,7 +78,7 @@ function SavedHousesPage() {
   /* ── unsave button inside the grid ── */
   const handleUnsave = async (houseId) => {
     try {
-      await axios.delete(`http://localhost:5002/api/house/${houseId}`);
+      await axios.delete(`http://myruhousing-1.onrender.com/api/house/${houseId}`);
       setProperties((prev) => prev.filter((h) => h._id !== houseId));
       if (selectedHouse && selectedHouse._id === houseId) closeModal();
     } catch (err) {

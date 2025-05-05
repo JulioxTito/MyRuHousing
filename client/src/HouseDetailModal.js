@@ -49,7 +49,7 @@ function HouseDetailModal({
   useEffect(() => {
     if (house && house.zpid) {
       axios
-        .get(`http://localhost:5002/api/houses/${house.zpid}/reviews`)
+        .get(`http://myruhousing-1.onrender.com/api/houses/${house.zpid}/reviews`)
         .then((res) => setReviews(res.data))
         .catch((err) => console.error("Error loading reviews", err));
     }
@@ -70,14 +70,14 @@ function HouseDetailModal({
     console.log("Submitting review:", newReview, "for house:", house.zpid);
 
     axios
-      .post(`http://localhost:5002/api/houses/${house.zpid}/reviews`, {
+      .post(`http://myruhousing-1.onrender.com/api/houses/${house.zpid}/reviews`, {
         text: newReview,
       })
       .then((res) => {
         console.log("Review submission response:", res.data);
         // Fetch the updated reviews instead of relying on response
         return axios.get(
-          `http://localhost:5002/api/houses/${house.zpid}/reviews`
+          `http://myruhousing-1.onrender.com/api/houses/${house.zpid}/reviews`
         );
       })
       .then((res) => {
@@ -136,7 +136,7 @@ function HouseDetailModal({
     // 3.) call the api/house route to save house
     try {
       const response = await axios.post(
-        "http://localhost:5002/api/house",
+        "http://myruhousing-1.onrender.com/api/house",
         body
       );
 

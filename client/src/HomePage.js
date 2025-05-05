@@ -116,7 +116,7 @@ function HomePage() {
   const fetchProperties = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5002/api/zillow/propertyExtendedSearch",
+        "http://myruhousing-1.onrender.com/api/zillow/propertyExtendedSearch",
         {
           params: {
             location: query,
@@ -156,7 +156,7 @@ function HomePage() {
       if (user && user.uid) {
         setUserId(user.uid);
         setPhotoUrl(
-          `http://localhost:5002/api/profile-photo/${user.uid}?t=${Date.now()}`
+          `http://myruhousing-1.onrender.com/api/profile-photo/${user.uid}?t=${Date.now()}`
         );
       } else {
         setUserId(null);
